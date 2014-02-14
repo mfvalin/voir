@@ -26,10 +26,14 @@ xrecsel.o:	xrecsel.c
 OBJECTS= convert_ip123.o fstd98.o aux.o get_nbrecs_actifs.o xfsl-xvoir-2000.o xvoir.o  \
 flush.o langue.o  parent.o  strutil.o  xinit.o  xrecsel.o widgets-util.o
 
+OBJECTS2=convert_ip123.o fstd98.o
+
 COMDECKS= xfsl-voir.cdk   xfsl.cdk
 
 xvoir: $(OBJECTS)
 	s.f90 $(OBJECTS) -o xvoir_$(VER)-$(BASE_ARCH) -lXm -lMrm -lXmu -lXp -lXt -lXext -lX11 -lXft -lXau -lXrender -lrmnbeta_014
 
+voir: $(OBJECTS2)
+	s.f90 $(OBJECTS2) voir.f90 -o voir_$(VER)-$(BASE_ARCH) -lrmnbeta_014
 clean:
-	/bin/rm -f *.mod *.o xvoir_$(VER)-$(BASE_ARCH)
+	/bin/rm -f *.mod *.o xvoir_$(VER)-$(BASE_ARCH) voir_$(VER)-$(BASE_ARCH)
