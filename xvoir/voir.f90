@@ -74,7 +74,7 @@
          ier = fnom(10,trim(filename),'STD+R/O+REMOTE'//val(2),0)
          if (ier .ge. 0) then
             N = fstouv(10,VAL(2))
-            if(trim(VAL(3))=="FULL")  val(3)='NINJNK+DATEV+IPALL+IP1+GRIDINFO'
+            if(trim(VAL(3))=="FULL")  val(3)='NINJNK+DATEV+IPALL+NOIP23+GRIDINFO'
             if(N>=0) then
               ier = fstvoi(10,val(3))
               ier = fstfrm(10)

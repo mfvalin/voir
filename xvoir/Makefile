@@ -11,7 +11,9 @@ OPTIMIZ = -O 2
 
 VER = 2.0
 
-default: xvoir
+RMNLIB = rmn_014
+
+default: Xvoir Voir
 
 .f90.o:
 	s.f90 $(OPTIMIZ) $(FFLAGS) -c $<
@@ -26,14 +28,24 @@ xrecsel.o:	xrecsel.c
 OBJECTS= convert_ip123.o fstd98.o aux.o get_nbrecs_actifs.o xfsl-xvoir-2000.o xvoir.o  \
 flush.o langue.o  parent.o  strutil.o  xinit.o  xrecsel.o widgets-util.o
 
-OBJECTS2=convert_ip123.o fstd98.o
+OBJECTS2=convert_ip123.o fstd98.o voir.o
 
 COMDECKS= xfsl-voir.cdk   xfsl.cdk
 
-xvoir: $(OBJECTS)
-	s.f90 $(OBJECTS) -o xvoir_$(VER)-$(BASE_ARCH) -lXm -lMrm -lXmu -lXp -lXt -lXext -lX11 -lXft -lXau -lXrender -lrmnbeta_014
+Xvoir: xvoir_$(VER)-$(BASE_ARCH)
+	ln -sf xvoir_$(VER)-$(BASE_ARCH) Xvoir
 
-voir: $(OBJECTS2)
-	s.f90 $(OBJECTS2) voir.f90 -o voir_$(VER)-$(BASE_ARCH) -lrmnbeta_014
+xvoir_$(VER)-$(BASE_ARCH): $(OBJECTS)
+	s.f90 $(OBJECTS) -o xvoir_$(VER)-$(BASE_ARCH) -lXm -lMrm -lXmu -lXp -lXt -lXext -lX11 -lXft -lXau -lXrender -l$(RMNLIB)
+
+Voir: voir_$(VER)-$(BASE_ARCH)
+	ln -sf voir_$(VER)-$(BASE_ARCH) Voir
+
+voir_$(VER)-$(BASE_ARCH): $(OBJECTS2)
+	s.f90 $(OBJECTS2) -o voir_$(VER)-$(BASE_ARCH) -l$(RMNLIB)
+
 clean:
-	/bin/rm -f *.mod *.o xvoir_$(VER)-$(BASE_ARCH) voir_$(VER)-$(BASE_ARCH)
+	/bin/rm -f *.mod *.o
+
+veryclean:
+	/bin/rm -f *.mod *.o xvoir_$(VER)-$(BASE_ARCH) voir_$(VER)-$(BASE_ARCH) Xvoir Voir
