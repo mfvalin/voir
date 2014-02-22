@@ -63,8 +63,8 @@
       integer lnkdiun(40)
 !
       DATA CLE/40*'iment.', 'style'/
-      DATA DEF/40*'SCRAP', 'OLDSTYLE'/
-      DATA VAL/40*'SCRAP', 'NEWSTYLE'/
+      DATA DEF/40*'SCRAP', 'NEWSTYLE'/
+      DATA VAL/40*'SCRAP', 'OLDSTYLE'/
 !
       DATA lnkdiun / 1, 11, 12, 13, 14, 15, 16, 17, 18, 19, &
                    20, 21, 22, 23, 24, 25, 26, 27, 28, 29, &
@@ -80,12 +80,6 @@
       do while (val(niun).ne.'SCRAP')
          niun = niun +1
       enddo
-         
-      if (val(41).eq.'OLDSTYLE') then
-         styleflag = .true.
-      else
-         styleflag = .false.
-      endif
 
       niun = niun -1
       do i=1, niun
@@ -119,7 +113,7 @@
       option = 'bouton_fermer'
       valeur = 'oui'
       ier = xselopt(iun, option, valeur)
-      ier = xfslvoir2000(nomfich, iun, nbrecs, 1, 2,styleflag)
+      ier = xfslvoir2000(nomfich, iun, nbrecs, 1, 2,val(41).ne.'OLDSTYLE')
       inf = xfslactv(recs, nbrecs, 1)
       ier = xselup(1)
 
