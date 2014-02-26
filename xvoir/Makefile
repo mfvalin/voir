@@ -36,7 +36,7 @@ Xvoir: xvoir_$(VER)-$(BASE_ARCH)
 	ln -sf xvoir_$(VER)-$(BASE_ARCH) Xvoir
 
 xvoir_$(VER)-$(BASE_ARCH): $(OBJECTS)
-	s.f90 $(OBJECTS) -o xvoir_$(VER)-$(BASE_ARCH) -LLIBS -lXm -lMrm -lXmu -lXp -lXt -lXext -lX11 -lXft -lXau -lXrender -l$(RMNLIB)
+	s.f90 $(OBJECTS) -o xvoir_$(VER)-$(BASE_ARCH) -LLIBS -LLIBS2 -lXm -lMrm -lXmu -lXp -lXt -lXext -lX11 -lXft -lXau -lXrender -l$(RMNLIB)
 
 Voir: voir_$(VER)-$(BASE_ARCH)
 	ln -sf voir_$(VER)-$(BASE_ARCH) Voir
