@@ -61,8 +61,8 @@ integer function xfslvoir2000(nomfich, iun, ttlrecs, winind, typesel, styleflag)
   integer, parameter :: Max_Kind=31
   character *2 kinds(0:Max_Kind)
   data kinds                                                                  &
-  &   / 'm ', 'sg', 'mb', '##', 'M ', 'hy', 'th', '??',                       &
-  &     '??', '??', 'H ', '??', '??', '??', '??', '  ',                       &
+  &   / ' m', 'sg', 'mb', '##', ' M', 'hy', 'th', '??',                       &
+  &     '??', '??', ' H', '??', '??', '??', '??', '  ',                       &
   &     '??', '[]', '??', '??', '??', 'mp', '??', '??',                       &
   &     '??', '??', '??', '??', '??', '??', '??', '  '/
 
