@@ -61,8 +61,8 @@ integer function xfslvoir2000(nomfich, iun, ttlrecs, winind, typesel, styleflag)
   integer, parameter :: Max_Kind=31
   character *2 kinds(0:Max_Kind)
   data kinds                                                                  &
-  &   / 'm ', 'sg', 'mb', '##', 'M ', 'hy', 'th', '??',                       &
-  &     '??', '??', 'H ', '??', '??', '??', '??', '  ',                       &
+  &   / ' m', 'sg', 'mb', '##', ' M', 'hy', 'th', '??',                       &
+  &     '??', '??', ' H', '??', '??', '??', '??', '  ',                       &
   &     '??', '[]', '??', '??', '??', 'mp', '??', '??',                       &
   &     '??', '??', '??', '??', '??', '??', '??', '  '/
 
@@ -91,7 +91,8 @@ integer function xfslvoir2000(nomfich, iun, ttlrecs, winind, typesel, styleflag)
     inf = fstprm(key, date0, deet, npas, ni, nj, nk, nbits,datyp, ip1, ip2, ip3, typvar, & 
         nomvar, etiket, grtyp, ig1, ig2, ig3, ig4, swa, lng, dltf, ubc, extra1, extra2, extra3)
     
-    call get_cdatyp(cdatyp, datyp)
+    call get_cdatyp(cdatyp, mod(datyp,16))
+    if(datyp>128) call get_cdatyp(cdatyp, 128+mod(datyp,16))  ! eliminate "missing" flag
     call newdate(date0,yyyymmdd,hhmmssss,-3)
     hhmmssss = hhmmssss / 100
     
@@ -352,6 +353,10 @@ integer function xfslactv(slkeys, nslkeys, winind)
         cdatyp = 'U'
     else if (datyp.eq.5) then
         cdatyp='E'
+    else if (datyp.eq.8) then
+        cdatyp='C'
+    else if (datyp.eq.6) then
+        cdatyp='F'
     else if (datyp.eq.134) then
         cdatyp='f'
     else if (datyp.eq.130) then
@@ -359,7 +364,7 @@ integer function xfslactv(slkeys, nslkeys, winind)
     else if (datyp.eq.132) then
         cdatyp='u'
     else
-        cdatyp = 'C'
+        cdatyp = 'S'
     endif
 
   return
