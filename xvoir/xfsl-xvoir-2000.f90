@@ -24,8 +24,9 @@ integer function xfslvoir2000(nomfich, iun, ttlrecs, winind, typesel, styleflag)
   interface
     function fstcantranslate(name) result (yesno) &
        BIND(C,name='FstCanTranslateName')
-    integer :: yesno
-    character(len=1) :: name
+    use ISO_C_BINDING
+    integer(C_INT) :: yesno
+    character(C_CHAR), dimension(*), intent(IN) :: name
     end function
   end interface
   integer ttlrecs,ntmrecs
