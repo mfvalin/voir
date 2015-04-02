@@ -11,7 +11,7 @@ OPTIMIZ = -O 2
 
 VER = 2.0
 
-RMNLIB = rmn_014
+RMNLIB = rmn_015.2
 
 default: Xvoir Voir
 
@@ -25,10 +25,10 @@ default: Xvoir Voir
 xrecsel.o:	xrecsel.c
 	s.cc -O 0 $(CFLAGS) -c $<
 	
-OBJECTS= convert_ip123.o fstd98.o aux.o get_nbrecs_actifs.o xfsl-xvoir-2000.o xvoir.o  \
+OBJECTS= fstd98.o excdes_new.o xdf98.o aux.o get_nbrecs_actifs.o xfsl-xvoir-2000.o xvoir.o  \
 flush.o langue.o  parent.o  strutil.o  xinit.o  xrecsel.o widgets-util.o
 
-OBJECTS2=convert_ip123.o fstd98.o voir.o
+OBJECTS2=fstd98.o voir.o excdes_new.o xdf98.o
 
 COMDECKS= xfsl-voir.cdk   xfsl.cdk
 
@@ -36,7 +36,7 @@ Xvoir: xvoir_$(VER)-$(BASE_ARCH)
 	ln -sf xvoir_$(VER)-$(BASE_ARCH) Xvoir
 
 xvoir_$(VER)-$(BASE_ARCH): $(OBJECTS)
-	s.f90 $(OBJECTS) -o xvoir_$(VER)-$(BASE_ARCH) -LLIBS -LLIBS2 -lXm -lMrm -lXmu -lXp -lXt -lXext -lX11 -lXft -lXau -lXrender -l$(RMNLIB)
+	s.f90 $(OBJECTS) -o xvoir_$(VER)-$(BASE_ARCH) -LLIBS0 -lXm -lMrm -lXmu -lXp -lXt -lXext -lX11 -lXft -lXau -lXrender -l$(RMNLIB)
 
 Voir: voir_$(VER)-$(BASE_ARCH)
 	ln -sf voir_$(VER)-$(BASE_ARCH) Voir

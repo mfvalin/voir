@@ -18,9 +18,9 @@
 ! * Boston, MA 02111-1307, USA.
 ! */
 integer function xfslvoir2000(nomfich, iun, ttlrecs, winind, typesel, styleflag)
-  use convert_ip123
   use ISO_C_BINDING
   implicit none
+  include 'convert_ip123.inc'
   interface
     function fstcantranslate(name) result (yesno) &
        BIND(C,name='FstCanTranslateName')
